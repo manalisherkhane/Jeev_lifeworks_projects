@@ -1,0 +1,2 @@
+Java is powerful.
+Multithreading improves performance.

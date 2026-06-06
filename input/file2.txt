@@ -1,0 +1,3 @@
+BufferedReader reads text from a character-input stream.
+It buffers characters to provide efficient reading.
+readLine() reads one line at a time.

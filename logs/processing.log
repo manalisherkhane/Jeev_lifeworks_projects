@@ -1,0 +1,8 @@
+2026-06-05T13:00:33.420400900 [main] === Processing started. Files found: 3 ===
+2026-06-05T13:00:33.446982500 [pool-1-thread-1] Starting processing: input\file1.txt
+2026-06-05T13:00:33.450302600 [pool-1-thread-3] Starting processing: input\file3.txt
+2026-06-05T13:00:33.457247200 [pool-1-thread-2] Starting processing: input\file2.txt
+2026-06-05T13:00:33.460966500 [pool-1-thread-1] Completed: input\file1.txt | Lines processed: 3
+2026-06-05T13:00:33.463814700 [pool-1-thread-2] Completed: input\file2.txt | Lines processed: 3
+2026-06-05T13:00:33.464891200 [pool-1-thread-3] Completed: input\file3.txt | Lines processed: 3
+2026-06-05T13:00:33.464891200 [main] === All files processed successfully ===
