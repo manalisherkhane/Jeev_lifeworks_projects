@@ -1,3 +1,0 @@
-ExecutorService manages a pool of worker threads.
-It decouples task submission from execution.
-Always call shutdown() after use.

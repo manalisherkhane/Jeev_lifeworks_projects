@@ -1,3 +1,0 @@
-Java multithreading allows concurrent execution of two or more parts of a program.
-Each part is called a thread.
-Threads are lightweight sub-processes.
