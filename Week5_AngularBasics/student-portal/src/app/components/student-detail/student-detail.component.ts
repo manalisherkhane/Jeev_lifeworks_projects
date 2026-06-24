@@ -1,0 +1,92 @@
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { StudentService } from '../../services/student.service';
+import { Student } from '../../models/student.model';
+
+@Component({
+  selector: 'app-student-detail',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    @if (student()) {
+      <div class="card">
+        <div class="card-header">
+          <div class="avatar">{{ initials() }}</div>
+          <div>
+            <h2>{{ student()!.name }}</h2>
+            <p class="email">{{ student()!.email }}</p>
+          </div>
+        </div>
+
+        <div class="details">
+          <div class="detail-row">
+            <span class="label">Course</span>
+            <span>{{ student()!.course }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Grade</span>
+            <span class="badge">{{ student()!.grade }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Enrolled On</span>
+            <span>{{ student()!.enrollmentDate }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Student ID</span>
+            <span>#{{ student()!.id }}</span>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <a routerLink="/students" class="btn-back">← Back</a>
+          <a [routerLink]="['/students/edit', student()!.id]" class="btn-edit">Edit</a>
+          <button (click)="delete()" class="btn-delete">Delete</button>
+        </div>
+      </div>
+    } @else {
+      <p class="not-found">Student not found. <a routerLink="/students">Go back</a></p>
+    }
+  `,
+  styles: [`
+    .card { max-width: 560px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.09); overflow: hidden; }
+    .card-header { display: flex; align-items: center; gap: 1.25rem; padding: 2rem; background: #1a1a2e; color: white; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; background: #3182ce; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; flex-shrink: 0; }
+    h2 { font-size: 1.3rem; font-weight: 700; margin: 0; }
+    .email { font-size: 0.875rem; color: #a0aec0; margin: 4px 0 0; }
+    .details { padding: 1.5rem 2rem; }
+    .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid #edf2f7; font-size: 0.95rem; }
+    .detail-row:last-child { border-bottom: none; }
+    .label { color: #718096; font-size: 0.85rem; font-weight: 600; }
+    .badge { background: #c6f6d5; color: #276749; padding: 2px 10px; border-radius: 4px; font-weight: 600; }
+    .card-actions { display: flex; gap: 0.75rem; justify-content: flex-end; padding: 1rem 2rem; background: #f7fafc; }
+    .btn-back { color: #718096; text-decoration: none; padding: 0.4rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.875rem; }
+    .btn-edit { color: #3182ce; text-decoration: none; padding: 0.4rem 1rem; border: 1px solid #bee3f8; border-radius: 6px; font-size: 0.875rem; }
+    .btn-delete { background: none; border: 1px solid #fed7d7; color: #e53e3e; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem; }
+    .not-found { text-align: center; padding: 3rem; color: #718096; }
+    .not-found a { color: #3182ce; }
+  `],
+})
+export class StudentDetailComponent implements OnInit {
+  private route  = inject(ActivatedRoute);
+  private svc    = inject(StudentService);
+  private router = inject(Router);
+
+  student = signal<Student | undefined>(undefined);
+
+  initials = () => {
+    const name = this.student()?.name ?? '';
+    return name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
+  };
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) this.student.set(this.svc.getById(+id));
+  }
+
+  delete(): void {
+    if (confirm('Delete this student?')) {
+      this.svc.delete(this.student()!.id);
+      this.router.navigate(['/students']);
+    }
+  }
+}
