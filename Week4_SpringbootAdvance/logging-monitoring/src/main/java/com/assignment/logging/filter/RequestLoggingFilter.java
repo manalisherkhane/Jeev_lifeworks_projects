@@ -32,7 +32,7 @@ public class RequestLoggingFilter implements Filter {
 
         String requestId = UUID.randomUUID().toString().substring(0, 8);
         MDC.put("requestId", requestId);
-        // In a real app with Spring Security, you'd pull the username from SecurityContext here
+
         MDC.put("userId", "anonymous");
 
         long start = System.currentTimeMillis();

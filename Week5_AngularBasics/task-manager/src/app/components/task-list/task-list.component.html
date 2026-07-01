@@ -1,0 +1,112 @@
+<div class="page-header">
+  <div>
+    <h1>Task Dashboard</h1>
+    <p>Manage, organize and track your daily tasks efficiently.</p>
+  </div>
+
+  <a class="create-btn" routerLink="/tasks/new">
+    + Create Task
+  </a>
+</div>
+
+<section class="list-page">
+<section class="list-page">
+ 
+  <div class="stats-row">
+   
+
+    <div class="stat-card">
+        <div class="stat-icon">📋</div>
+
+        <div class="stat-content">
+            <h2>{{ stats().total }}</h2>
+            <p>Total Tasks</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🟠</div>
+
+        <div class="stat-content">
+            <h2>{{ stats().pending }}</h2>
+            <p>Pending</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🔵</div>
+
+        <div class="stat-content">
+            <h2>{{ stats().inProgress }}</h2>
+            <p>In Progress</p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🟢</div>
+
+        <div class="stat-content">
+            <h2>{{ stats().completed }}</h2>
+            <p>Completed</p>
+        </div>
+    </div>
+
+
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Search tasks…"
+      (input)="setSearch($any($event.target).value)"
+    />
+
+    <div class="filter-group">
+      <button [class.active]="filterStatus() === 'all'" (click)="setStatusFilter('all')">All</button>
+      <button [class.active]="filterStatus() === 'pending'" (click)="setStatusFilter('pending')">Pending</button>
+      <button [class.active]="filterStatus() === 'in-progress'" (click)="setStatusFilter('in-progress')">In Progress</button>
+      <button [class.active]="filterStatus() === 'completed'" (click)="setStatusFilter('completed')">Completed</button>
+    </div>
+
+    <div class="filter-group">
+      <button [class.active]="filterPriority() === 'all'" (click)="setPriorityFilter('all')">Any Priority</button>
+      <button [class.active]="filterPriority() === 'high'" (click)="setPriorityFilter('high')">High</button>
+      <button [class.active]="filterPriority() === 'medium'" (click)="setPriorityFilter('medium')">Medium</button>
+      <button [class.active]="filterPriority() === 'low'" (click)="setPriorityFilter('low')">Low</button>
+    </div>
+  </div>
+
+  <!-- Task cards -->
+  @if (filteredTasks().length === 0) {
+    <div class="empty-state">
+      <p>No tasks match your filters.</p>
+      <a class="btn-primary" routerLink="/tasks/new">Create your first task</a>
+    </div>
+  } @else {
+    <div class="task-grid">
+      @for (task of filteredTasks(); track task.id) {
+        <div class="task-card" [class.done]="task.status === 'completed'">
+          <div class="card-header">
+            <span class="priority-dot" [ngClass]="priorityClass(task.priority)" title="{{ task.priority }} priority"></span>
+            <span class="status-badge" [ngClass]="statusClass(task.status)">{{ statusLabel(task.status) }}</span>
+          </div>
+
+          <h3 class="task-title">{{ task.title }}</h3>
+          <p class="task-desc">{{ task.description }}</p>
+
+          <div class="task-meta">
+            <span class="due-date">📅 {{ task.dueDate }}</span>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn-icon" [routerLink]="['/tasks', task.id]" title="View">👁</a>
+            <a class="btn-icon" [routerLink]="['/tasks', task.id, 'edit']" title="Edit">✏️</a>
+            <button class="btn-icon danger" (click)="deleteTask(task.id)" title="Delete">🗑</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</section>

@@ -1,0 +1,77 @@
+<section class="form-page">
+  <div class="form-card">
+    <div class="form-header">
+
+    <div>
+        <h2>{{ isEdit() ? 'Edit Task' : 'Create New Task' }}</h2>
+
+        <p class="form-subtitle">
+            Fill in the details below to manage your tasks efficiently.
+        </p>
+    </div>
+
+    <a routerLink="/tasks" class="back-link">
+        ← Back
+    </a>
+
+</div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+      <!-- Title -->
+      <div class="field" [class.has-error]="fieldError('title')">
+        <label for="title">Title</label>
+        <input id="title" type="text" formControlName="title" placeholder="e.g. Build login page" />
+        @if (fieldError('title')) {
+          <span class="error-msg">{{ fieldError('title') }}</span>
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="field" [class.has-error]="fieldError('description')">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" rows="4" placeholder="Describe the task in detail…"></textarea>
+        @if (fieldError('description')) {
+          <span class="error-msg">{{ fieldError('description') }}</span>
+        }
+      </div>
+
+      <!-- Status & Priority row -->
+      <div class="field-row">
+        <div class="field" [class.has-error]="fieldError('status')">
+          <label for="status">Status</label>
+          <select id="status" formControlName="status">
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="field" [class.has-error]="fieldError('priority')">
+          <label for="priority">Priority</label>
+          <select id="priority" formControlName="priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Due Date -->
+      <div class="field" [class.has-error]="fieldError('dueDate')">
+        <label for="dueDate">Due Date</label>
+        <input id="dueDate" type="date" formControlName="dueDate" />
+        @if (fieldError('dueDate')) {
+          <span class="error-msg">{{ fieldError('dueDate') }}</span>
+        }
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/tasks" class="btn-cancel">Cancel</a>
+        <button type="submit" class="btn-submit">
+          {{ isEdit() ? 'Save Changes' : 'Create Task' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+2026-06-22 10:39:41.441 | AUDIT | [reqId=40c0c085] | CALL | method=ProductService.createProduct(..) | args=[com.assignment.logging.dto.ProductRequest@7f053128]
+2026-06-22 10:39:41.533 | AUDIT | [reqId=40c0c085] | SUCCESS | method=ProductService.createProduct(..) | duration=91ms
+2026-06-22 10:40:12.149 | AUDIT | [reqId=400a6467] | CALL | method=ProductService.getAllProducts() | args=[]
+2026-06-22 10:40:12.254 | AUDIT | [reqId=400a6467] | SUCCESS | method=ProductService.getAllProducts() | duration=105ms
+2026-06-22 10:40:28.044 | AUDIT | [reqId=d3e83b5f] | CALL | method=ProductService.getProductById(..) | args=[999]
+2026-06-22 10:40:28.060 | AUDIT | [reqId=d3e83b5f] | FAILURE | method=ProductService.getProductById(..) | exception=ResourceNotFoundException | message=Product not found with id: 999
+2026-06-22 11:02:58.359 | AUDIT | [reqId=b2666d53] | CALL | method=ProductService.createProduct(..) | args=[com.assignment.logging.dto.ProductRequest@d529e93]
+2026-06-22 11:02:58.434 | AUDIT | [reqId=b2666d53] | SUCCESS | method=ProductService.createProduct(..) | duration=73ms
+2026-06-22 11:57:28.345 | AUDIT | [reqId=844cc025] | CALL | method=ProductService.createProduct(..) | args=[com.assignment.logging.dto.ProductRequest@50c2129b]
+2026-06-22 11:57:28.436 | AUDIT | [reqId=844cc025] | SUCCESS | method=ProductService.createProduct(..) | duration=91ms
+2026-06-22 11:57:45.299 | AUDIT | [reqId=f072e849] | CALL | method=ProductService.getAllProducts() | args=[]
+2026-06-22 11:57:45.392 | AUDIT | [reqId=f072e849] | SUCCESS | method=ProductService.getAllProducts() | duration=93ms
+2026-06-22 11:57:53.723 | AUDIT | [reqId=a9766046] | CALL | method=ProductService.getProductById(..) | args=[999]
+2026-06-22 11:57:53.737 | AUDIT | [reqId=a9766046] | FAILURE | method=ProductService.getProductById(..) | exception=ResourceNotFoundException | message=Product not found with id: 999
+2026-06-22 12:16:47.793 | AUDIT | [reqId=e5ec3290] | CALL | method=ProductService.getAllProducts() | args=[]
+2026-06-22 12:16:48.145 | AUDIT | [reqId=e5ec3290] | SUCCESS | method=ProductService.getAllProducts() | duration=350ms
+2026-06-22 12:20:45.361 | AUDIT | [reqId=e28de789] | CALL | method=ProductService.getProductById(..) | args=[1]
+2026-06-22 12:20:45.382 | AUDIT | [reqId=e28de789] | SUCCESS | method=ProductService.getProductById(..) | duration=21ms

@@ -1,0 +1,52 @@
+@if (task(); as t) {
+  <section class="detail-page">
+    <div class="detail-card">
+      <div class="detail-header">
+
+    <div>
+
+        <span class="priority-label" [attr.data-p]="t.priority">
+            {{ t.priority | titlecase }} Priority
+        </span>
+
+        <h1 class="detail-title">
+            {{ t.title }}
+        </h1>
+
+        <p class="task-subtitle">
+            View complete information about this task.
+        </p>
+
+    </div>
+
+    <span class="status-badge" [ngClass]="statusClass(t.status)">
+        {{ statusLabel(t.status) }}
+    </span>
+
+</div>
+
+      <p class="detail-desc">{{ t.description }}</p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">Due Date</span>
+          <span class="meta-value">{{ t.dueDate }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Created</span>
+          <span class="meta-value">{{ t.createdAt | date:'mediumDate' }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Task ID</span>
+          <span class="meta-value">#{{ t.id }}</span>
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <a routerLink="/tasks" class="btn-back">← All Tasks</a>
+        <a [routerLink]="['/tasks', t.id, 'edit']" class="btn-edit">Edit Task</a>
+        <button class="btn-delete" (click)="delete()">Delete</button>
+      </div>
+    </div>
+  </section>
+}

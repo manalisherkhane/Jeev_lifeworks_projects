@@ -16,7 +16,6 @@ import java.util.Arrays;
 @Component
 public class AuditLoggingAspect {
 
-    // Named AUDIT_LOGGER to match the dedicated appender in logback-spring.xml
     private static final Logger auditLog = LoggerFactory.getLogger("AUDIT_LOGGER");
     private static final Logger log = LoggerFactory.getLogger(AuditLoggingAspect.class);
 

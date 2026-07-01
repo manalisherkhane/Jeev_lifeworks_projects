@@ -1,0 +1,19 @@
+
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" routerLink="/tasks">
+      <span class="brand-icon">✦</span>
+      <span class="brand-name">TaskFlow</span>
+    </a>
+    <nav class="nav-links">
+      <a routerLink="/tasks" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        All Tasks
+      </a>
+      <a class="btn-new" routerLink="/tasks/new">+ New Task</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>
