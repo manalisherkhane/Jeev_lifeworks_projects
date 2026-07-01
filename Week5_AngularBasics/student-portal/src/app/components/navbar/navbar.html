@@ -1,1 +1,23 @@
-<p>navbar works!</p>
+
+<nav class="navbar">
+  <span class="brand">🎓 Student Portal</span>
+
+  <div class="links">
+    <a
+      routerLink="/students"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Students
+    </a>
+
+
+    
+    <a
+      routerLink="/students/new"
+      routerLinkActive="active"
+    >
+      Add Student
+    </a>
+  </div>
+</nav>

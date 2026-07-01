@@ -1,1 +1,54 @@
 <p>student-detail works!</p>
+@if (student()) {
+  <div class="card">
+    <div class="card-header">
+      <div class="avatar">{{ initials() }}</div>
+      <div>
+        <h2>{{ student()!.name }}</h2>
+        <p class="email">{{ student()!.email }}</p>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="detail-row">
+        <span class="label">Course</span>
+        <span>{{ student()!.course }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Grade</span>
+        <span class="badge">{{ student()!.grade }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Enrolled On</span>
+        <span>{{ student()!.enrollmentDate }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Student ID</span>
+        <span>#{{ student()!.id }}</span>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <a routerLink="/students" class="btn-back">← Back</a>
+
+      <a
+        [routerLink]="['/students/edit', student()!.id]"
+        class="btn-edit"
+      >
+        Edit
+      </a>
+
+      <button (click)="delete()" class="btn-delete">
+        Delete
+      </button>
+    </div>
+  </div>
+} @else {
+  <p class="not-found">
+    Student not found.
+    <a routerLink="/students">Go back</a>
+  </p>
+}

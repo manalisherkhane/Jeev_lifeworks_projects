@@ -16,9 +16,9 @@
 
 </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <form [formGroup]="form" (ngSubmit)="submit()">
 
-      <!-- Title -->
+      
       <div class="field" [class.has-error]="fieldError('title')">
         <label for="title">Title</label>
         <input id="title" type="text" formControlName="title" placeholder="e.g. Build login page" />
@@ -27,7 +27,7 @@
         }
       </div>
 
-      <!-- Description -->
+      
       <div class="field" [class.has-error]="fieldError('description')">
         <label for="description">Description</label>
         <textarea id="description" formControlName="description" rows="4" placeholder="Describe the task in detail…"></textarea>
@@ -36,7 +36,6 @@
         }
       </div>
 
-      <!-- Status & Priority row -->
       <div class="field-row">
         <div class="field" [class.has-error]="fieldError('status')">
           <label for="status">Status</label>
@@ -57,7 +56,7 @@
         </div>
       </div>
 
-      <!-- Due Date -->
+      
       <div class="field" [class.has-error]="fieldError('dueDate')">
         <label for="dueDate">Due Date</label>
         <input id="dueDate" type="date" formControlName="dueDate" />

@@ -1,1 +1,98 @@
-<p>student-form works!</p>
+
+<div class="form-card">
+  <h2>{{ isEdit ? 'Edit Student' : 'Add New Student' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="field">
+      <label>Full Name</label>
+      <input
+        formControlName="name"
+        placeholder="e.g. Arjun Sharma"
+      />
+
+      @if (f['name'].touched && f['name'].invalid) {
+        <span class="error">Name is required.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        placeholder="e.g. arjun@mail.com"
+      />
+
+      @if (f['email'].touched && f['email'].invalid) {
+        <span class="error">Valid email is required.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label>Course</label>
+
+      <select formControlName="course">
+        <option value="">-- Select Course --</option>
+        <option>Computer Science</option>
+        <option>Data Science</option>
+        <option>Cybersecurity</option>
+        <option>Web Development</option>
+        <option>Cloud Computing</option>
+      </select>
+
+      @if (f['course'].touched && f['course'].invalid) {
+        <span class="error">Course is required.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label>Grade</label>
+
+      <select formControlName="grade">
+        <option value="">-- Select Grade --</option>
+        <option>A</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B</option>
+        <option>B-</option>
+        <option>C</option>
+      </select>
+
+      @if (f['grade'].touched && f['grade'].invalid) {
+        <span class="error">Grade is required.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label>Enrollment Date</label>
+
+      <input
+        formControlName="enrollmentDate"
+        type="date"
+      />
+
+      @if (f['enrollmentDate'].touched && f['enrollmentDate'].invalid) {
+        <span class="error">Enrollment date is required.</span>
+      }
+    </div>
+
+    <div class="actions">
+      <a
+        routerLink="/students"
+        class="btn-cancel"
+      >
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="btn-submit"
+      >
+        {{ isEdit ? 'Update Student' : 'Add Student' }}
+      </button>
+    </div>
+
+  </form>
+</div>

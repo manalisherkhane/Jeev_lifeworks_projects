@@ -4,12 +4,12 @@
     <p>Manage, organize and track your daily tasks efficiently.</p>
   </div>
 
-  <a class="create-btn" routerLink="/tasks/new">
+  <!-- <a class="create-btn" routerLink="/tasks/new">
     + Create Task
-  </a>
+  </a> -->
 </div>
 
-<section class="list-page">
+
 <section class="list-page">
  
   <div class="stats-row">
@@ -54,7 +54,7 @@
 
   </div>
 
-  <!-- Filters -->
+
   <div class="filters-bar">
     <input
       class="search-input"
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <!-- Task cards -->
+  
   @if (filteredTasks().length === 0) {
     <div class="empty-state">
       <p>No tasks match your filters.</p>

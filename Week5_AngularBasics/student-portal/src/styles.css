@@ -10,3 +10,18 @@ body {
 
 a { text-decoration: none; }
 button { font-family: inherit; }
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+body {
+  background:
+  linear-gradient(
+    to bottom,
+    #f8fafc,
+    #eef2ff
+  );
+}
